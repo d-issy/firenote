@@ -12,7 +12,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    lodingDone (state) {
+    loadingDone (state) {
       state.loading = false
     },
     auth (state, user) {
