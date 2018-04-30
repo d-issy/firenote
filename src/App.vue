@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Loading v-if="isLoading" />
-    <div v-else id="container">
-      <div id="wrapeer">
-        <Header />
+    <div v-else>
+      <Header />
+      <div id="container">
         <router-view v-if="isLogin" />
         <Login v-else />
       </div>
@@ -37,5 +37,12 @@ export default {
 body {
   margin: 0;
   font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, sans-serif;
+}
+#container {
+  width: 100%;
+  max-width: 1580px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 20px;
 }
 </style>
