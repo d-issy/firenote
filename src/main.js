@@ -7,6 +7,8 @@ import './registerServiceWorker'
 import * as firebase from 'firebase'
 import config from './config/firebase.config'
 
+import 'firebase/firestore'
+
 firebase.initializeApp(config)
 firebase.auth().onAuthStateChanged(user => {
   store.commit('auth', user)
