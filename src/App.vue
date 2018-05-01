@@ -3,7 +3,8 @@
     <Loading v-if="isLoading" />
     <div v-else>
       <Header />
-      <div id="container">
+      <div class="wrapper container">
+        <Editor v-if="isEditorOpen" />
         <router-view v-if="isLogin" />
         <Login v-else />
       </div>
@@ -13,14 +14,18 @@
 
 <script>
 import Header from './components/Header'
+
 import Loading from './components/Loading'
 import Login from './components/Login'
+
+import Editor from './components/Editor'
 
 export default {
   components: {
     Header,
     Loading,
-    Login
+    Login,
+    Editor
   },
   computed: {
     isLoading () {
@@ -28,6 +33,9 @@ export default {
     },
     isLogin () {
       return this.$store.state.auth.login
+    },
+    isEditorOpen () {
+      return this.$store.state.editor.open
     }
   }
 }
@@ -38,11 +46,19 @@ body {
   margin: 0;
   font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, sans-serif;
 }
-#container {
+.wrapper {
+  margin: 0 auto;
   width: 100%;
   max-width: 1580px;
+}
+.container {
+  position: fixed;
   box-sizing: border-box;
-  margin: 0 auto;
   padding: 20px;
+  top: 45px;
+  bottom: 0;
+}
+button {
+  cursor: pointer;
 }
 </style>

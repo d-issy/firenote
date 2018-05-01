@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     dots () {
-      console.log(this.sep)
       return '.'.repeat(this.sep)
     }
   }

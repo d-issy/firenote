@@ -14,6 +14,10 @@ firebase.auth().onAuthStateChanged(user => {
   store.commit('auth', user)
 })
 
+firebase.firestore().settings({
+  timestampsInSnapshots: true
+})
+
 Vue.config.productionTip = false
 
 new Vue({

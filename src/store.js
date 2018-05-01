@@ -9,6 +9,9 @@ export default new Vuex.Store({
     auth: {
       login: false,
       user: null
+    },
+    editor: {
+      open: false
     }
   },
   mutations: {
@@ -30,9 +33,17 @@ export default new Vuex.Store({
         state.auth.user = null
       }
       state.loading = false
+    },
+    toggleEditor (state) {
+      state.editor.open = !state.editor.open
     }
   },
   actions: {
 
+  },
+  getters: {
+    user_id: state => {
+      return (state.auth.login && state.auth.user.uid) || null
+    }
   }
 })
