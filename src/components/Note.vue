@@ -1,17 +1,43 @@
 <template>
-  <article>
+  <article v-if="exists">
     <p>{{ note.text }}</p>
     <time>作成日 {{ note.createdAt | time }}</time>
+    <div class="control-area">
+      <button @click="edit">編集</button>
+      <button @click="destory">削除</button>
+    </div>
   </article>
 </template>
 
 <script>
+import {firestore} from 'firebase'
 import moment from 'moment'
 export default {
+  data () {
+    return {
+      exists: true
+    }
+  },
   props: {
     note: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    edit () {
+      console.log(`edit ${this.$props.note.id}`)
+    },
+    destory () {
+      if (!confirm('削除してよろしいですか')) {
+        return
+      }
+      const id = this.$props.note.id
+      firestore().collection('notes').doc(id).delete().then(() => {
+        this.exists = false
+      }).catch(() => {
+        console.error('削除できませんでした。')
+      })
     }
   },
   filters: {
@@ -43,5 +69,9 @@ article {
 }
 article time {
   font-size: 13px;
+}
+.control-area {
+  float: right;
+  margin-right: 10px;
 }
 </style>
