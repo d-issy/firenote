@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import Header from './components/Header'
+import Header from '@/components/Header'
 
-import Loading from './components/Loading'
-import Login from './components/Login'
+import Loading from '@/components/Loading'
+import Login from '@/components/Login'
 
-import Editor from './components/Editor'
+import Editor from '@/components/Editor'
 
 export default {
   components: {

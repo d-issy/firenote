@@ -6,8 +6,7 @@
 
 <script>
 import {firestore} from 'firebase'
-import Note from './Note'
-
+import Note from '@/components/Note'
 export default {
   components: {
     Note
