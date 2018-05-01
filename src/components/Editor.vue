@@ -52,7 +52,7 @@ export default {
 <style scoped>
 #new-screen {
   position: absolute;
-  top: 0;
+  top: 45px;
   bottom: 0;
   left: 0;
   right: 0;

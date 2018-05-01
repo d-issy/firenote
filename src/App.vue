@@ -52,7 +52,6 @@ body {
   max-width: 1580px;
 }
 .container {
-  position: fixed;
   box-sizing: border-box;
   padding: 20px;
   top: 45px;
