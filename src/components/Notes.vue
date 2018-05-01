@@ -29,9 +29,14 @@ export default {
 
 <style scoped>
 .notes {
-  display: inline-flex;
-  justify-content: space-between;
-  align-content: flex-start;
+  width: 100%;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
+.notes::after {
+    content:"";
+    display: block;
+    width:30%;
+  }
 </style>
