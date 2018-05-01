@@ -25,6 +25,7 @@ export default {
 <style scoped>
 article {
   border: 1px solid #ccc;
+  border-radius: 5px;
   box-sizing: border-box;
   flex-basis: 33%;
   padding: 10px;

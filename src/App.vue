@@ -60,4 +60,8 @@ body {
 button {
   cursor: pointer;
 }
+h1 {
+  margin-top: 40px;
+  text-align: center;
+}
 </style>
