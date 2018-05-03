@@ -4,7 +4,8 @@
       <textarea v-model="text" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
       <div v-if="error" class="error">{{ error }}</div>
       <div>
-        <button @click="save">保存</button>
+        <button class="save-btn" @click="save">保存</button>
+        <button class="close-btn" @click="close">破棄</button>
       </div>
     </div>
   </div>
@@ -38,6 +39,12 @@ export default {
       }).catch(() => {
         this.error = 'firestoreへの接続でエラーが発生しました。'
       })
+    },
+    close () {
+      if (!confirm('本当に破棄してよろしいですか？')) {
+        return
+      }
+      this.$store.commit('toggleEditor')
     }
   },
   computed: {
@@ -92,6 +99,11 @@ export default {
   padding: 5px 20px;
   font-size: 16px;
   color: #fff;
+}
+.close-btn {
+  background-color: #ff5c5c;
+}
+.save-btn {
   background-color: #2196f3;
 }
 .error {
