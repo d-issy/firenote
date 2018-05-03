@@ -66,16 +66,19 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
   overflow-y: auto;
 }
 .edit-area {
   width: 100%;
   max-width: 640px;
+  border-radius: 5px;
   position: relative;
   margin: 0 auto;
   background-color: #fff;
+  overflow: hidden;
+  padding: 10px;
 }
 .edit-area h2 {
   text-align: center;
@@ -85,6 +88,7 @@ export default {
   width: 100%;
   height: auto;
   border-radius: 5px;
+  border: 1px solid #aaa;
   outline: none;
   box-sizing: border-box;
   resize: vertical;
