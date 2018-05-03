@@ -1,7 +1,7 @@
 <template>
   <div id="new-screen">
     <div class="edit-area">
-      <textarea v-model="text" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
+      <textarea v-model="text" @keydown.enter="onEnter" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
       <div v-if="error" class="error">{{ error }}</div>
       <div>
         <button class="save-btn" @click="save">保存</button>
@@ -21,6 +21,11 @@ export default {
     }
   },
   methods: {
+    onEnter (e) {
+      if (e.metaKey || e.ctrlKey) {
+        this.save()
+      }
+    },
     save () {
       if (!this.text) {
         this.error = 'メモが入力されていません。'
