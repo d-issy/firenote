@@ -18,10 +18,8 @@ export default {
   },
   beforeMount () {
     // TOOD: 並び順を実装する
-    firestore().collection('notes').get().then(query => {
-      this.notes = query.docs.map(note => ({ ...note.data(), id: note.id }))
-    }).catch(() => {
-      console.error('ノートの取得に失敗しました。')
+    firestore().collection('notes').onSnapshot(snapshot => {
+      this.notes = snapshot.docs.map(note => ({...note.data(), id: note.id}))
     })
   }
 }

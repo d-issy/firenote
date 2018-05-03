@@ -1,5 +1,5 @@
 <template>
-  <article v-if="exists">
+  <article>
     <p>{{ note.text }}</p>
     <time>作成日 {{ note.createdAt | time }}</time>
     <div class="control-area">
@@ -13,11 +13,6 @@
 import {firestore} from 'firebase'
 import moment from 'moment'
 export default {
-  data () {
-    return {
-      exists: true
-    }
-  },
   props: {
     note: {
       type: Object,
@@ -33,9 +28,7 @@ export default {
         return
       }
       const id = this.$props.note.id
-      firestore().collection('notes').doc(id).delete().then(() => {
-        this.exists = false
-      }).catch(() => {
+      firestore().collection('notes').doc(id).delete().catch(() => {
         console.error('削除できませんでした。')
       })
     }
