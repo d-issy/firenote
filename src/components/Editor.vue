@@ -68,7 +68,6 @@ export default {
   max-width: 640px;
   position: relative;
   margin: 0 auto;
-  overflow: hidden;
   background-color: #fff;
 }
 .edit-area h2 {
