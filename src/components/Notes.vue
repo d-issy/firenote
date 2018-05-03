@@ -1,5 +1,6 @@
 <template>
   <div class="notes">
+    <div v-if="!notes.length" class="no-note">ノートはありません</div>
     <Note v-for="(note, _, index) in notes" :key="index" :note="note" />
   </div>
 </template>
@@ -36,5 +37,9 @@ export default {
     content:"";
     display: block;
     width:30%;
-  }
+}
+.no-note {
+  width: 100%;
+  text-align: center;
+}
 </style>
