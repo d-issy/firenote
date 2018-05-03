@@ -1,7 +1,7 @@
 <template>
   <div id="new-screen">
     <div class="edit-area">
-      <textarea v-model="text" :rows="rows" placeholder="ノートを書きます"></textarea>
+      <textarea v-model="text" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
       <div v-if="error" class="error">{{ error }}</div>
       <div>
         <button @click="save">保存</button>
@@ -45,6 +45,9 @@ export default {
       let n = this.text.split('\n').length
       return n
     }
+  },
+  mounted () {
+    this.$nextTick(() => this.$refs.newNote.focus())
   }
 }
 </script>
