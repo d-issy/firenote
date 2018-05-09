@@ -1,11 +1,16 @@
 <template>
   <div id="new-screen">
     <div class="edit-area">
-      <textarea v-model="text" @keydown.enter="onEnter" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
+      <div v-if="loading">loading...</div>
+      <textarea v-else v-model="text" @keydown.enter="onEnter" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
       <div v-if="error" class="error">{{ error }}</div>
-      <div>
+      <div v-if="!edit">
         <button class="save-btn" @click="save">保存</button>
         <button class="close-btn" @click="close">破棄</button>
+      </div>
+      <div v-else>
+        <button class="save-btn" @click="saveEdit">編集を保存</button>
+        <button class="close-btn" @click="close">編集を破棄</button>
       </div>
     </div>
   </div>
@@ -17,6 +22,8 @@ export default {
   data () {
     return {
       text: '',
+      edit: false,
+      loading: false,
       error: null
     }
   },
@@ -31,7 +38,7 @@ export default {
         this.error = 'メモが入力されていません。'
         return
       }
-      const {text} = this
+      const text = this.text
       const user = this.$store.getters.user_id
       const now = new Date()
       firestore().collection('notes').add({
@@ -43,6 +50,18 @@ export default {
         this.$store.commit('toggleEditor')
       }).catch(() => {
         this.error = 'firestoreへの接続でエラーが発生しました。'
+      })
+    },
+    saveEdit () {
+      const text = this.text
+      const now = new Date()
+      firestore().collection('notes').doc(this.id).set({
+        text,
+        updatedAt: now
+      }, {merge: true}).then(() => {
+        this.$store.commit('toggleEditor')
+      }).catch(() => {
+        this.error = 'ノートの編集に失敗しました。'
       })
     },
     close () {
@@ -58,8 +77,25 @@ export default {
       return n
     }
   },
+  beforeMount () {
+    this.id = this.$store.state.editor.id
+    this.edit = this.id !== null
+    if (this.edit) {
+      this.loading = true
+    }
+    firestore().collection('notes').doc(this.id).get().then(doc => {
+      const note = doc.data()
+      this.text = note.text
+      this.loading = false
+      this.$nextTick(() => this.$refs.newNote.focus())
+    }).catch(err => {
+      console.error('error: ', err)
+    })
+  },
   mounted () {
-    this.$nextTick(() => this.$refs.newNote.focus())
+    if (!this.edit) {
+      this.$nextTick(() => this.$refs.newNote.focus())
+    }
   }
 }
 </script>

@@ -11,7 +11,8 @@ export default new Vuex.Store({
       user: null
     },
     editor: {
-      open: false
+      open: false,
+      id: null
     }
   },
   mutations: {
@@ -36,6 +37,13 @@ export default new Vuex.Store({
     },
     toggleEditor (state) {
       state.editor.open = !state.editor.open
+      if (!state.editor.open) {
+        state.editor.id = null
+      }
+    },
+    openEditor (state, id) {
+      state.editor.open = true
+      state.editor.id = id
     }
   },
   actions: {

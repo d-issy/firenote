@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     edit () {
-      console.log(`edit ${this.$props.note.id}`)
+      this.$store.commit('openEditor', this.$props.note.id)
     },
     destory () {
       if (!confirm('削除してよろしいですか')) {
