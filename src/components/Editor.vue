@@ -1,5 +1,5 @@
 <template>
-  <div id="new-screen">
+  <div id="edit-screen">
     <div class="edit-area">
       <div v-if="loading">loading...</div>
       <textarea v-else v-model="text" @keydown.enter="onEnter" :rows="rows" placeholder="ノートを書きます" ref="newNote"></textarea>
@@ -106,12 +106,13 @@ export default {
 </script>
 
 <style scoped>
-#new-screen {
+#edit-screen {
   position: absolute;
   top: 45px;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 30;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
   overflow-y: auto;
