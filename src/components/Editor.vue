@@ -31,9 +31,9 @@ export default {
     onEnter (e) {
       if (e.metaKey || e.ctrlKey) {
         if (this.edit) {
-          this.save()
-        } else {
           this.saveEdit()
+        } else {
+          this.save()
         }
       }
     },
