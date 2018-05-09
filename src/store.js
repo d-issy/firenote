@@ -35,15 +35,13 @@ export default new Vuex.Store({
       }
       state.loading = false
     },
-    toggleEditor (state) {
-      state.editor.open = !state.editor.open
-      if (!state.editor.open) {
-        state.editor.id = null
-      }
-    },
     openEditor (state, id) {
+      state.editor.id = id || null
       state.editor.open = true
-      state.editor.id = id
+    },
+    closeEditor (state) {
+      state.editor.id = null
+      state.editor.open = false
     }
   },
   actions: {

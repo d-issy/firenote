@@ -13,7 +13,7 @@
 export default {
   methods: {
     write () {
-      this.$store.commit('toggleEditor')
+      this.$store.commit('openEditor')
     }
   }
 }

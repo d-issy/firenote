@@ -51,7 +51,7 @@ export default {
         createdAt: now,
         updatedAt: now
       }).then(() => {
-        this.$store.commit('toggleEditor')
+        this.$store.commit('closeEditor')
       }).catch(() => {
         this.error = 'firestoreへの接続でエラーが発生しました。'
       })
@@ -63,7 +63,7 @@ export default {
         text,
         updatedAt: now
       }, {merge: true}).then(() => {
-        this.$store.commit('toggleEditor')
+        this.$store.commit('closeEditor')
       }).catch(() => {
         this.error = 'ノートの編集に失敗しました。'
       })
@@ -72,7 +72,7 @@ export default {
       if (!confirm('本当に破棄してよろしいですか？')) {
         return
       }
-      this.$store.commit('toggleEditor')
+      this.$store.commit('closeEditor')
     }
   },
   computed: {
