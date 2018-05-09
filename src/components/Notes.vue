@@ -1,5 +1,6 @@
 <template>
-  <div class="notes">
+  <div v-if="loading">Loading...</div>
+  <div v-else class="notes">
     <div v-if="!notes.length" class="no-note">ノートはありません</div>
     <Note v-for="(note, _, index) in notes" :key="index" :note="note" />
   </div>
@@ -14,13 +15,15 @@ export default {
   },
   data () {
     return {
+      loading: true,
       notes: []
     }
   },
-  beforeMount () {
+  created () {
     // TOOD: 並び順を実装する
     firestore().collection('notes').onSnapshot(snapshot => {
       this.notes = snapshot.docs.map(note => ({...note.data(), id: note.id}))
+      this.loading = false
     })
   }
 }
