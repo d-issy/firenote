@@ -64,4 +64,9 @@ h1 {
   margin-top: 40px;
   text-align: center;
 }
+a {
+  color: #0089ff;
+  text-decoration: none;
+  font-weight: bold;
+}
 </style>
