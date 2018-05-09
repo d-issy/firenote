@@ -20,8 +20,8 @@ export default {
     }
   },
   created () {
-    // TOOD: 並び順を実装する
-    firestore().collection('notes').onSnapshot(snapshot => {
+    // TOOD: ページネーションを実装する
+    firestore().collection('notes').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
       this.notes = snapshot.docs.map(note => ({...note.data(), id: note.id}))
       this.loading = false
     })
