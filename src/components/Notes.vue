@@ -36,7 +36,7 @@ export default {
 .notes::after {
     content:"";
     display: block;
-    width:30%;
+    width: 33%;
 }
 .no-note {
   width: 100%;
