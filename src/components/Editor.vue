@@ -84,9 +84,10 @@ export default {
   beforeMount () {
     this.id = this.$store.state.editor.id
     this.edit = this.id !== null
-    if (this.edit) {
-      this.loading = true
+    if (!this.edit) {
+      return
     }
+    this.loading = true
     firestore().collection('notes').doc(this.id).get().then(doc => {
       const note = doc.data()
       this.text = note.text
