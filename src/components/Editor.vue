@@ -30,7 +30,11 @@ export default {
   methods: {
     onEnter (e) {
       if (e.metaKey || e.ctrlKey) {
-        this.save()
+        if (this.edit) {
+          this.save()
+        } else {
+          this.saveEdit()
+        }
       }
     },
     save () {
